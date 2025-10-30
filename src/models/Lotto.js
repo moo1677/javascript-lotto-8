@@ -1,10 +1,10 @@
-import { LOTTO_CONSTANTS } from './Constant/lottoConstant.js';
+import { LOTTO_CONSTANTS } from '../Constant/lottoConstant.js';
 class Lotto {
   #numbers;
 
   constructor(numbers) {
     this.#validate(numbers);
-    this.#numbers = sort(numbers);
+    this.#numbers = this.#sortNumber(numbers);
   }
 
   #validate(numbers) {
@@ -19,20 +19,25 @@ class Lotto {
     }
   }
   #validateRange(numbers) {
-    if (
-      numbers.every(
-        (number) =>
-          Number.isInteger(number) &&
-          number >= LOTTO_CONSTANTS.MIN_LOTTO_NUMBER &&
-          number <= LOTTO_CONSTANTS.MAX_LOTTO_NUMBER,
-      )
-    )
+    const isValid = (number) =>
+      Number.isInteger(number) &&
+      number >= LOTTO_CONSTANTS.MIN_LOTTO_NUMBER &&
+      number <= LOTTO_CONSTANTS.MAX_LOTTO_NUMBER;
+
+    if (numbers.some((number) => !isValid(number)))
       throw new Error('[ERROR] 로또 번호는 1에서 45사이의 숫자 입니다.');
   }
-  #validateNoDuplicates(number) {
-    const uniqueNumbers = new Set(number);
-    if (uniqueNumbers.length !== number.length)
+
+  #validateNoDuplicates(numbers) {
+    const uniqueNumbers = new Set(numbers);
+    if (uniqueNumbers.size !== numbers.length)
       throw new Error('[ERROR] 당첨 번호는 중복될 수 없습니다.');
+  }
+  #sortNumber(numbers) {
+    [...numbers].sort((a, b) => a - b);
+  }
+  getNumber() {
+    return [...this.#numbers];
   }
 }
 
