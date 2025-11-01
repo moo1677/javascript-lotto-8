@@ -1,5 +1,5 @@
 export const Parser = {
-  parserPurchaseAmount(amountString) {
+  parsePurchaseAmount(amountString) {
     return Number(amountString.trim());
   },
   parseWinningNumbers(numberString) {

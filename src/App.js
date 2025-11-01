@@ -2,7 +2,6 @@ import InputView from './View/InputView.js';
 import LottoManager from './models/LottoManager.js';
 import Lotto from './models/Lotto.js';
 import WinningLotto from './models/WinningLotto.js';
-import { Console } from '@woowacourse/mission-utils';
 import { Validation } from './utils/Validation.js';
 import { Parser } from './utils/Parser.js';
 class App {
@@ -14,7 +13,7 @@ class App {
       try {
         const purchaseAmountString = await InputView.inputCache();
         const purchaseAmountNumber =
-          Parser.parserPurchaseAmount(purchaseAmountString);
+          Parser.parsePurchaseAmount(purchaseAmountString);
         Validation.validateLottoCount(purchaseAmountNumber);
         purchaseAmount = purchaseAmountNumber;
         break;
