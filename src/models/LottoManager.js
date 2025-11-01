@@ -11,6 +11,7 @@ export default class LottoManager {
     this.#lottoCount = purchaseAmount / LOTTO_CONSTANTS.PRICE;
     this.#lottos = [];
     this.#winnerLotto = winnerLotto;
+    this.runLottoMachine();
   }
 
   #createLotto() {

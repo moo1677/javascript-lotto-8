@@ -1,4 +1,5 @@
 import { LOTTO_CONSTANTS } from '../Constant/lottoConstant.js';
+import { ERROR_MESSAGE } from '../Constant/ErrorMessage.js';
 
 export const Validation = {
   //구입 금액을 검증합니다
@@ -7,8 +8,7 @@ export const Validation = {
       Number.isInteger(purchase) &&
       purchase > 0 &&
       purchase % LOTTO_CONSTANTS.PRICE === 0;
-    if (!isValid)
-      throw new Error('[ERROR] 1000원으로 나누어 떨어지는 정수를 입력해주세요');
+    if (!isValid) throw new Error(ERROR_MESSAGE.INVALID_PURCHASE_AMOUNT);
   },
   //보너스 번호를 검증합니다
   validateBonusNumber(bonusNumber, winnerLotto) {
@@ -21,10 +21,10 @@ export const Validation = {
       number >= LOTTO_CONSTANTS.MIN_NUMBER &&
       number <= LOTTO_CONSTANTS.MAX_NUMBER;
     if (!isValid(bonusNumber))
-      throw new Error('[ERROR] 보너스 번호는 1에서 45사이의 숫자 입니다.');
+      throw new Error(ERROR_MESSAGE.INVALID_BONUS_NUMBER_RANGE);
   },
   validateNoDuplicates(bonusNumber, winnerLotto) {
     if (winnerLotto.includes(bonusNumber))
-      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.');
+      throw new Error(ERROR_MESSAGE.DUPLICATE_BONUS_NUMBER);
   },
 };

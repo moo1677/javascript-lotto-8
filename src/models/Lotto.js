@@ -1,4 +1,5 @@
 import { LOTTO_CONSTANTS } from '../Constant/lottoConstant.js';
+import { ERROR_MESSAGE } from '../Constant/ErrorMessage.js';
 class Lotto {
   #numbers;
 
@@ -15,7 +16,7 @@ class Lotto {
 
   #validateLength(numbers) {
     if (numbers.length !== LOTTO_CONSTANTS.NUMBER_COUNT) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
+      throw new Error(ERROR_MESSAGE.INVALID_LOTTO_COUNT);
     }
   }
   #validateRange(numbers) {
@@ -25,13 +26,13 @@ class Lotto {
       number <= LOTTO_CONSTANTS.MAX_NUMBER;
 
     if (numbers.some((number) => !isValid(number)))
-      throw new Error('[ERROR] 로또 번호는 1에서 45사이의 숫자 입니다.');
+      throw new Error(ERROR_MESSAGE.INVALID_LOTTO_RANGE);
   }
 
   #validateNoDuplicates(numbers) {
     const uniqueNumbers = new Set(numbers);
     if (uniqueNumbers.size !== numbers.length)
-      throw new Error('[ERROR] 로또 번호는 중복될 수 없습니다.');
+      throw new Error(ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBERS);
   }
   #sortNumber(numbers) {
     return [...numbers].sort((a, b) => a - b);
