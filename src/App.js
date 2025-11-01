@@ -4,6 +4,8 @@ import Lotto from './models/Lotto.js';
 import WinningLotto from './models/WinningLotto.js';
 import { Validation } from './utils/Validation.js';
 import { Parser } from './utils/Parser.js';
+import { PRICE_INFO } from './Constant/lottoConstant.js';
+import { Console } from '@woowacourse/mission-utils';
 class App {
   async run() {
     let purchaseAmount;
@@ -48,6 +50,7 @@ class App {
     }
     const winnerLotto = new WinningLotto(mainLotto, bonusNumber);
     const manager = new LottoManager(purchaseAmount, winnerLotto);
+    manager.runLottoMachine();
   }
 }
 
