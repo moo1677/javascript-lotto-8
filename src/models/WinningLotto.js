@@ -1,5 +1,4 @@
-import Lotto from './Lotto';
-import { LOTTO_CONSTANTS } from '../Constant/lottoConstant';
+import { LOTTO_CONSTANTS } from '../Constant/lottoConstant.js';
 
 export default class WinningLotto {
   #lotto;
