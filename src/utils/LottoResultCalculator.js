@@ -1,20 +1,20 @@
 export default class LottoResultCalculator {
-  getRank(myLotto, winningLotto) {
+  static getRank(myLotto, winningLotto) {
     const myNumber = myLotto.getNumber();
-    const winningNumber = winningLotto.getNumber();
+    const winningNumber = winningLotto.getLottoNumber();
     const bonusNumber = winningLotto.getBonusNumber();
 
-    const matchCount = this.#getMatchCount(myNumber, winningNumber);
-    const hasBonus = this.#getHasBonus(myNumber, bonusNumber);
-    return this.#getTotalRank(matchCount, hasBonus);
+    const matchCount = this.checkMatchCount(myNumber, winningNumber);
+    const hasBonus = this.checkHasBonus(myNumber, bonusNumber);
+    return this.getTotalRank(matchCount, hasBonus);
   }
-  #getMatchCount(myNumber, winningNumber) {
+  static checkMatchCount(myNumber, winningNumber) {
     return myNumber.filter((number) => winningNumber.includes(number)).length;
   }
-  #getHasBonus(myNumber, bonusNumber) {
+  static checkHasBonus(myNumber, bonusNumber) {
     return myNumber.includes(bonusNumber);
   }
-  #getTotalRank(matchCount, hasBonus) {
+  static getTotalRank(matchCount, hasBonus) {
     if (matchCount === 6) return 1;
     if (matchCount === 5 && hasBonus) return 2;
     if (matchCount === 5) return 3;

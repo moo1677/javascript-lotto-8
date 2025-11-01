@@ -7,4 +7,10 @@ export default class WinningLotto {
     this.#lotto = winningLotto;
     this.#bonusNumber = bonusNumber;
   }
+  getLottoNumber() {
+    return this.#lotto.getNumber();
+  }
+  getBonusNumber() {
+    return this.#bonusNumber;
+  }
 }
