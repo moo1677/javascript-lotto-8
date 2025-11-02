@@ -11,18 +11,16 @@ export default class LottoManager {
   #lottoResultArray;
   #lottoResult;
   #rateOfReturn;
-  constructor(purchaseAmount, winnerLotto) {
+  constructor(purchaseAmount) {
     this.#purchaseAmount = purchaseAmount;
     this.#lottoCount = purchaseAmount / LOTTO_CONSTANTS.PRICE;
     this.#lottos = [];
     this.#lottoResultArray = [];
     this.#lottoResult = [0, 0, 0, 0, 0, 0];
-    this.#winnerLotto = winnerLotto;
     this.#rateOfReturn = 0;
   }
-  runLottoMachine() {
-    this.#createLotto();
-    this.#printLotto();
+  runLottoMachine(winnerLotto) {
+    this.#winnerLotto = winnerLotto;
     this.#calculatorLotto();
     this.#calculatorProfitRate();
     this.#printResult();
@@ -34,7 +32,8 @@ export default class LottoManager {
       this.#lottos.push(lotto);
     }
   }
-  #printLotto() {
+  printLotto() {
+    this.#createLotto();
     OutputView.outputLottoCount(this.#lottoCount);
     this.#lottos.forEach((lotto) => {
       OutputView.outPutLottoNumber(lotto.getNumber());
