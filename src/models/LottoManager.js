@@ -23,7 +23,11 @@ export default class LottoManager {
     this.#winnerLotto = winnerLotto;
     this.#calculatorLotto();
     this.#calculatorProfitRate();
-    this.#printResult();
+    const result = {
+      resultArray: [...this.#lottoResult],
+      returnRate: this.#rateOfReturn,
+    };
+    return result;
   }
   #createLotto() {
     for (let i = 0; i < this.#lottoCount; i += 1) {
@@ -32,12 +36,10 @@ export default class LottoManager {
       this.#lottos.push(lotto);
     }
   }
-  printLotto() {
+  getRandomLotto() {
     this.#createLotto();
-    OutputView.outputLottoCount(this.#lottoCount);
-    this.#lottos.forEach((lotto) => {
-      OutputView.outPutLottoNumber(lotto.getNumber());
-    });
+    const randomLotto = { count: this.#lottoCount, lottos: this.#lottos };
+    return randomLotto;
   }
   #calculatorLotto() {
     this.#lottos.forEach((lotto) => {
@@ -61,8 +63,5 @@ export default class LottoManager {
     });
     const profitRate = (totalPrize / this.#purchaseAmount) * 100;
     this.#rateOfReturn = Math.round(profitRate * 10) / 10;
-  }
-  #printResult() {
-    OutputView.outPutLottoResult(this.#lottoResult, this.#rateOfReturn);
   }
 }
