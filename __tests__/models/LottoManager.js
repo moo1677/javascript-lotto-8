@@ -37,6 +37,8 @@ describe('로또 관리 클래스 테스트', () => {
 
     expect(mockOutputLottoCount).toHaveBeenCalledTimes(1);
     expect(mockOutputLottoCount).toHaveBeenCalledWith(lottoCount);
+
+    expect(mockOutputLottoNumber).toHaveBeenCalledTimes(lottoCount);
   });
   test('당첨 통계와 수익률을 계산하고 출력한다.', () => {
     const purchaseAmount = 4000;
