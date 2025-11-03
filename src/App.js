@@ -69,9 +69,7 @@ class App {
   }
   #printLotto(randomLottos) {
     OutputView.outputLottoCount(randomLottos.count);
-    randomLottos.lottos.forEach((lotto) => {
-      OutputView.outPutLottoNumber(lotto.getNumber());
-    });
+    OutputView.outPutLottoNumber(randomLottos.lottos);
   }
 }
 

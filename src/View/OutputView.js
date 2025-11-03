@@ -5,7 +5,9 @@ export default class OutputView {
     Console.print(`\n${purchaseAmount}개를 구매했습니다.`);
   }
   static outPutLottoNumber(lottos) {
-    Console.print(`[${lottos.join(', ')}]`);
+    lottos.forEach((lotto) => {
+      Console.print(`[${lotto.getNumber().join(', ')}]`);
+    });
   }
   static outPutLottoResult(resultArray, returnRatio) {
     Console.print('\n당첨 통계\n---');
