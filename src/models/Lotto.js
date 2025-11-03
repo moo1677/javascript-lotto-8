@@ -38,6 +38,10 @@ class Lotto {
     return [...numbers].sort((a, b) => a - b);
   }
   getNumber() {
+    /* 
+    return this.#numbers 로 반환할 경우 원본 메모리주소를 그대로 반환하기 때문에 캡슐화가 깨질 수 있다.
+    따라서 스프레드 연산자[...array] 를 사용하여 복사본을 안전하게 return 할 수 있다.
+    */
     return [...this.#numbers];
   }
 }
